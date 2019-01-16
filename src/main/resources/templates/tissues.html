@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!--<table border="1">-->
+    <!--<th:block th:each="tissue_element : ${tissues_list}">-->
+        <!--<tr>-->
+            <!--<td th:text="${tissue_element[0]}">1</td>-->
+            <!--<td th:text="${tissue_element[1]}">1</td>-->
+            <!--<td th:text="${tissue_element[2]}">1</td>-->
+            <!--<td th:text="${tissue_element[3]}">1</td>-->
+        <!--</tr>-->
+    <!--</th:block>-->
+<!--</table>-->
+<form action="#"  th:object="${tissue}" method="post">
+    <input type="text" th:field="*{name}" />
+    <input type="text" th:field="*{id}" />
+    <input type="text" th:field="*{price}" />
+    <input type="text" th:field="*{quantity}" />
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+
+</body>
+</html>
