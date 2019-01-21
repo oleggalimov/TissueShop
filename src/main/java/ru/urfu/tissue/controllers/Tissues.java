@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.urfu.tissue.dao.Tissue;
 import ru.urfu.tissue.utils.ConnectionCreator;
 
 import java.sql.Connection;
@@ -23,16 +24,17 @@ public class Tissues {
 
         try {
             ResultSet resultSet = connection.prepareStatement(SELECT_ALL).executeQuery();
-            ArrayList <String []> result = new ArrayList<>();
+            ArrayList <Tissue> result = new ArrayList<>();
             while (resultSet.next()) {
-                String [] temp = new String[4];
-                temp[0]=String.valueOf(resultSet.getInt(1));
-                temp[1]=resultSet.getString(2);
-                temp[2]=String.valueOf(resultSet.getDouble(3));
-                temp[3]=String.valueOf(resultSet.getDouble(4));
+                Tissue temp = new Tissue();
+                temp.setId(resultSet.getInt(1));
+                temp.setName(resultSet.getString(2));
+                temp.setPrice(resultSet.getFloat(3));
+                temp.setQuantity(resultSet.getFloat(4));
                 result.add(temp);
             }
             model.addAttribute("tissues_list", result);
+            model.addAttribute("tissue", new Tissue());
             return "Tissues";
         } catch (SQLException e) {
             e.printStackTrace();

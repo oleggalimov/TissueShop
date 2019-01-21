@@ -12,6 +12,7 @@ import ru.urfu.tissue.utils.ConnectionCreator;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,31 +21,30 @@ import java.util.ArrayList;
 public class NewTissue {
     @Autowired
     ConnectionCreator connectionCreator;
-    private String SELECT_ALL = "INSERT INTO public.tissues (name, price, quantity) values (?,?,?)";
+    private String INSERT_VALUE = "INSERT INTO public.tissues (name, price, quantity) values (?,?,?)";
     @RequestMapping("/tissues/new")
-    public String list_all(Model model)  {
-        System.out.println(model.toString());
-//
-//        Connection connection = connectionCreator.createConnection();
-//
-//        try {
-//            ResultSet resultSet = connection.prepareStatement(SELECT_ALL).executeQuery();
-//            ArrayList <String []> result = new ArrayList<>();
-//            while (resultSet.next()) {
-//                String [] temp = new String[4];
-//                temp[0]=String.valueOf(resultSet.getInt(1));
-//                temp[1]=resultSet.getString(2);
-//                temp[2]=String.valueOf(resultSet.getDouble(3));
-//                temp[3]=String.valueOf(resultSet.getDouble(4));
-//                result.add(temp);
-//            }
-//            model.addAttribute("tissues_list", result);
-//            return "Tissues";
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return String.valueOf(e.getErrorCode());
-//        }
-//        model.addAttribute("tissue", new );
-        return "tissue";
+    public String add_tissue (@ModelAttribute Tissue tissue, Model model)  {
+
+        Connection connection = connectionCreator.createConnection();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(INSERT_VALUE);
+            statement.setString(1,tissue.getName());
+            statement.setFloat(2,tissue.getPrice());
+            statement.setFloat(3,tissue.getQuantity());
+            statement.execute();
+            int updateCount = statement.getUpdateCount();
+            if (updateCount==1) {
+                return "tissue";
+            } else {
+                model.addAttribute("Error",updateCount);
+                return "error";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            model.addAttribute("Error",e.getMessage());
+            return "error";
+        }
+
     }
 }

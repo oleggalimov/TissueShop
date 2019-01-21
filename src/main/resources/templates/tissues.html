@@ -5,22 +5,36 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<!--<table border="1">-->
-    <!--<th:block th:each="tissue_element : ${tissues_list}">-->
-        <!--<tr>-->
-            <!--<td th:text="${tissue_element[0]}">1</td>-->
-            <!--<td th:text="${tissue_element[1]}">1</td>-->
-            <!--<td th:text="${tissue_element[2]}">1</td>-->
-            <!--<td th:text="${tissue_element[3]}">1</td>-->
-        <!--</tr>-->
-    <!--</th:block>-->
-<!--</table>-->
-<form action="#"  th:object="${tissue}" method="post">
-    <input type="text" th:field="*{name}" />
-    <input type="text" th:field="*{id}" />
-    <input type="text" th:field="*{price}" />
-    <input type="text" th:field="*{quantity}" />
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+<table border="1">
+    <th:block th:each="tissue_element : ${tissues_list}">
+        <tr>
+            <td th:text="${tissue_element.id}">Идентификатор</td>
+            <td th:text="${tissue_element.name}">Наименование</td>
+            <td th:text="${tissue_element.price}">Цена</td>
+            <td th:text="${tissue_element.quantity}">Количество</td>
+        </tr>
+    </th:block>
+</table>
+<br>
+<form action="#"  th:action="@{/tissues/new}" th:object="${tissue}" method="post">
+    <table>
+        <tr>
+            <td>Наименование</td>
+            <td>Цена</td>
+            <td>Количество</td>
+        </tr>
+        <tr>
+            <td><input type="text" th:field="*{name}" /></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+            <td><input type="text" th:field="*{price}" /></td>
+            <td th:if="${#fields.hasErrors('price')}" th:errors="*{name}">Price Error</td>
+            <td><input type="text" th:field="*{quantity}" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /> </td>
+            <td><input type="reset" value="Reset" /></td>
+        </tr>
+    </table>
 </form>
 
 </body>

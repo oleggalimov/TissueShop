@@ -1,3 +1,4 @@
+DROP  TABLE IF EXISTS public.tissues  CASCADE;
 CREATE TABLE public.tissues
 (
     id SERIAL NOT NULL,

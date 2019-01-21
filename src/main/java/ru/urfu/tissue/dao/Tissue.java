@@ -2,16 +2,19 @@ package ru.urfu.tissue.dao;
 
 
 public class Tissue {
-   public String id;
-   public String name;
-   public String price;
-   public String quantity;
+    private Integer id;
+    private String name;
+    private Float price;
+    private Float quantity;
 
-    public String getId() {
+    public Tissue() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -23,19 +26,20 @@ public class Tissue {
         this.name = name;
     }
 
-    public String getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
-    public String getQuantity() {
+    public Float getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(Float quantity) {
         this.quantity = quantity;
     }
+
 }
