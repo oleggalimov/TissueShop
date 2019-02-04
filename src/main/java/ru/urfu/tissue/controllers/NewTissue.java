@@ -42,7 +42,7 @@ public class NewTissue {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            model.addAttribute("Error",e.getMessage());
+            model.addAttribute("Error_message",e.getMessage());
             return "error";
         }
 
