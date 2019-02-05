@@ -31,7 +31,6 @@ public class Tissues {
                 temp.setId(resultSet.getInt(1));
                 temp.setName(resultSet.getString(2));
                 temp.setPrice(resultSet.getFloat(3));
-                temp.setQuantity(resultSet.getFloat(4));
                 result.add(temp);
             }
             model.addAttribute("tissues_list", result);

@@ -4,7 +4,6 @@ CREATE TABLE public.tissues
     id SERIAL NOT NULL,
     name text NOT NULL,
     price numeric(5) NOT NULL,
-    quantity numeric(5) NOT NULL,
     PRIMARY KEY (id)
 )
 WITH (

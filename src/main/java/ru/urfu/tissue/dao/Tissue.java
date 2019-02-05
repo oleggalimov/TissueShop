@@ -5,7 +5,6 @@ public class Tissue {
     private Integer id;
     private String name;
     private Float price;
-    private Float quantity;
 
     public Tissue() {
     }
@@ -34,12 +33,5 @@ public class Tissue {
         this.price = price;
     }
 
-    public Float getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Float quantity) {
-        this.quantity = quantity;
-    }
 
 }
