@@ -31,7 +31,6 @@ public class NewTissue {
             PreparedStatement statement = connection.prepareStatement(INSERT_VALUE);
             statement.setString(1,tissue.getName());
             statement.setFloat(2,tissue.getPrice());
-            statement.setFloat(3,tissue.getQuantity());
             statement.execute();
             int updateCount = statement.getUpdateCount();
             if (updateCount==1) {

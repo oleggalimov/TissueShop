@@ -1,6 +1,6 @@
 package ru.urfu.tissue.dao;
 
-public class Orders {
+public class Order {
     //order section
     private Integer id;
     private Integer status;
@@ -18,7 +18,9 @@ public class Orders {
     //видимо надо заменить cart на orders
     //и здесь держать массив item'ов
 
-    public Orders() {
+    public Order() {
+        this.status=0;
+        this.creationDate=System.currentTimeMillis();
     }
 
     public Integer getId() {

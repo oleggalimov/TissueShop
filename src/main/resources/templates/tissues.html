@@ -11,7 +11,6 @@
             <td th:text="${tissue_element.id}">Идентификатор</td>
             <td th:text="${tissue_element.name}">Наименование</td>
             <td th:text="${tissue_element.price}">Цена</td>
-            <td th:text="${tissue_element.quantity}">Количество</td>
         </tr>
     </th:block>
 </table>
@@ -28,7 +27,7 @@
             <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
             <td><input type="text" th:field="*{price}" /></td>
             <td th:if="${#fields.hasErrors('price')}" th:errors="*{name}">Price Error</td>
-            <td><input type="text" th:field="*{quantity}" /></td>
+
         </tr>
         <tr>
             <td><input type="submit" value="Submit" /> </td>

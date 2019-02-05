@@ -58,7 +58,8 @@
                     <li>Ищи по названию</li>
                     <li>Найди материал на свой вкус</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+                <button th:onclick="'window.location.href = \'' + @{/tissues} + '\''" type="button" class="btn btn-lg btn-block btn-primary">Просмотреть каталог</button>
+
             </div>
         </div>
         <div class="card mb-4 shadow-sm">
@@ -72,7 +73,7 @@
                     <li>Оставь свой контакт</li>
                     <li>Подтверди заказ в ответ на звонок</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+                <button th:onclick="'window.location.href = \'' + @{/order} + '\''" type="button" class="btn btn-lg btn-block btn-primary">Оформить заказ</button>
             </div>
         </div>
         <div class="card mb-4 shadow-sm">
@@ -86,7 +87,7 @@
                     <li>Оплати заказ при получении</li>
                     <li>Наслаждайся</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+                <button th:onclick="'window.location.href = \'' + @{/contact} + '\''" type="button" class="btn btn-lg btn-block btn-primary">Связаться с нами</button>
             </div>
         </div>
     </div>
