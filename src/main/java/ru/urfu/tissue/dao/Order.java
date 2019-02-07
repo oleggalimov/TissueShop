@@ -1,5 +1,8 @@
 package ru.urfu.tissue.dao;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class Order {
     //order section
     private Integer id;
@@ -14,13 +17,14 @@ public class Order {
     private Long phoneNumber;
     private String address;
 
-    //TODO
-    //видимо надо заменить cart на orders
-    //и здесь держать массив item'ов
+    //items section
+    private HashSet <OrderItem> itemsList;
+
 
     public Order() {
         this.status=0;
         this.creationDate=System.currentTimeMillis();
+        this.itemsList =new HashSet<>();
     }
 
     public Integer getId() {
@@ -94,4 +98,21 @@ public class Order {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public HashSet getItemsList() {
+        return itemsList;
+    }
+
+    public void setItemsList(HashSet itemsList) {
+        this.itemsList = itemsList;
+    }
+
+    public void addOrderItem (OrderItem newItem) {
+        this.itemsList.add(newItem);
+    }
+    public void removeOrderItem (OrderItem newItem) {
+        Integer key = newItem.getTissueId();
+        this.itemsList.remove(newItem);
+    }
+
 }

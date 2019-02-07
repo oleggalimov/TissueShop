@@ -6,11 +6,20 @@
 </head>
 <body>
 <table border="1">
+    <tr>
+        <th>Идентификатор</th>
+        <th>Наименование</th>
+        <th>Цена</th>
+        <th>Желаемое количество</th>
+        <th>Добавить в корзину</th>
+    </tr>
     <th:block th:each="tissue_element : ${tissues_list}">
         <tr>
             <td th:text="${tissue_element.id}">Идентификатор</td>
             <td th:text="${tissue_element.name}">Наименование</td>
             <td th:text="${tissue_element.price}">Цена</td>
+            <td ><input th:id="'quantity_' + ${tissue_element.id}" type="number" step="0.01" min="0.0"/></td>
+            <td button th:onclick="'javascript:addItemToChart(' + ${tissue_element.id} +');'">Добавить</td>
         </tr>
     </th:block>
 </table>
@@ -35,6 +44,8 @@
         </tr>
     </table>
 </form>
+<!--loading js-->
 
+<script type = "application/javascript" th:src="@{/js/main.js}" crossorigin="anonymous"></script>
 </body>
 </html>

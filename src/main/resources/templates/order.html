@@ -16,6 +16,22 @@
 <p th:text="'Статус: ' + ${Order.status}" />
 <p th:text="'Дата создания: ' + ${Order.creationDate}" />
 
+Данные заказа:
+<table border="1">
+    <tr>
+        <th>Идентификатор</th>
+        <th>Количество</th>
+        <th>Стоимость</th>
+    </tr>
+    <th:block th:each="Order_item : ${Order.itemsList}">
+        <tr>
+            <td th:text="${Order_item.tissueId}">Ткань</td>
+            <td th:text="${Order_item.quantity}">Количество</td>
+            <td th:text="${Order_item.totalPrice}">Цена</td>
+        </tr>
+    </th:block>
+</table>
+
 <a href="/tissues">Submit another tissue</a>
 </body>
 </html>
