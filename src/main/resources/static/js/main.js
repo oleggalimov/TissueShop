@@ -1,13 +1,19 @@
-function addItemToChart(id, name) {
+function addItemToChart(id, price) {
+    var name = document.getElementById('name_'+id).textContent;
     var quantity = document.getElementById('quantity_'+id).value;
         if (quantity=="0.00"||quantity==undefined||quantity==""||quantity==0) {
             alert("Ошибка, уточните количество ткани");
-        } else {
+        } else if (name==""||name==undefined){
+            alert("Ошибка, не указано имя");
+        }
+        else {
             var body = JSON.stringify(
                 {
                     "tissueId":id,
+                    "name":name,
+                    "price":price,
                     "quantity":quantity,
-                    "totalPrice":10000}
+                    "totalPrice":price*quantity}
                     );
             var xmlreq = new XMLHttpRequest();
             xmlreq.open("POST","/order","false");

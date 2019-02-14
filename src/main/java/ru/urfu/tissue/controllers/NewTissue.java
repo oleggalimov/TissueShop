@@ -22,19 +22,20 @@ public class NewTissue {
     @Autowired
     ConnectionCreator connectionCreator;
     private String INSERT_VALUE = "INSERT INTO public.tissues (name, price, quantity) values (?,?,?)";
-    @RequestMapping("/tissues/new")
+    @RequestMapping("/catalog/new")
     public String add_tissue (@ModelAttribute Tissue tissue, Model model)  {
 
-        Connection connection = connectionCreator.createConnection();
 
-        try {
+
+        try (Connection connection = connectionCreator.createConnection()) {
+
             PreparedStatement statement = connection.prepareStatement(INSERT_VALUE);
             statement.setString(1,tissue.getName());
             statement.setFloat(2,tissue.getPrice());
             statement.execute();
             int updateCount = statement.getUpdateCount();
             if (updateCount==1) {
-                return "tissue";
+                return "catalog";
             } else {
                 model.addAttribute("Error",updateCount);
                 return "error";

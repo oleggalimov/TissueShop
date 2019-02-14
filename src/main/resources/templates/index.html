@@ -4,9 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v3.8.5">
     <title>Ткани на заказ</title>
 
     <!-- Bootstrap core CSS -->
@@ -30,12 +27,13 @@
 </head>
 <body>
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal">#ВСЕТКАНИМИРА</h5>
+    <h5 class="my-0 mr-md-auto font-weight-normal" >
+        <a href="/">#ВСЕТКАНИМИРА</a>
+    </h5>
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">О нас</a>
-        <a class="p-2 text-dark" href="#">Клиентам</a>
-        <a class="p-2 text-dark" href="#">Каталог</a>
-        <a class="p-2 text-dark" href="#">Мои заказы</a>
+        <a class="p-2 text-dark" href="/about">О нас</a>
+        <a class="p-2 text-dark" href="/catalog">Каталог</a>
+        <a class="p-2 text-dark" href="/order">Корзина</a>
     </nav>
     <a class="btn btn-outline-primary" href="#">Sign up</a>
 </div>
@@ -58,7 +56,7 @@
                     <li>Ищи по названию</li>
                     <li>Найди материал на свой вкус</li>
                 </ul>
-                <button th:onclick="'window.location.href = \'' + @{/tissues} + '\''" type="button" class="btn btn-lg btn-block btn-primary">Просмотреть каталог</button>
+                <button th:onclick="'window.location.href = \'' + @{/catalog} + '\''" type="button" class="btn btn-lg btn-block btn-primary">Просмотреть каталог</button>
 
             </div>
         </div>
@@ -92,45 +90,40 @@
         </div>
     </div>
 
+    <div class="container">
+        <h1>Найти свой заказ</h1>
+        <form class="form" action="#" th:action="@{/checkorder/find}" method="post">
+            <table class="table">
+                <tr>
+                    <td>Идентификатор</td>
+                    <td>
+                        <input type="number"  size="50" name="orderId" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Контактный телефон</td>
+                    <td>
+                        <input type="number"  size="50" name="phoneNumber" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" title="Поиск"/><br/><br/><input type="reset" value="Reset" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <!---Footer--->
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
             <div class="col-12 col-md">
 
-                <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Features</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Cool stuff</a></li>
-                    <li><a class="text-muted" href="#">Random feature</a></li>
-                    <li><a class="text-muted" href="#">Team feature</a></li>
-                    <li><a class="text-muted" href="#">Stuff for developers</a></li>
-                    <li><a class="text-muted" href="#">Another one</a></li>
-                    <li><a class="text-muted" href="#">Last time</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Resources</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Resource</a></li>
-                    <li><a class="text-muted" href="#">Resource name</a></li>
-                    <li><a class="text-muted" href="#">Another resource</a></li>
-                    <li><a class="text-muted" href="#">Final resource</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>About</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Team</a></li>
-                    <li><a class="text-muted" href="#">Locations</a></li>
-                    <li><a class="text-muted" href="#">Privacy</a></li>
-                    <li><a class="text-muted" href="#">Terms</a></li>
-                </ul>
+                <small class="d-block mb-3 text-muted">&copy;2019, Галимов О.Д., #ВСЕТКАНИМИРА</small>
             </div>
         </div>
     </footer>
+    <!--Footer--->
 </div>
-
-
 </body>
 </html>

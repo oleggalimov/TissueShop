@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -12,12 +6,39 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Result</h1>
-<p th:text="'name: ' + ${tissue.name}" />
-<p th:text="'price: ' + ${tissue.price}" />
 
-<a href="/tissues">Submit another tissue</a>
-</body>
-</html>
+<!---баннер--->
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal" >
+        <a href="/">#ВСЕТКАНИМИРА</a>
+    </h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/about">О нас</a>
+        <a class="p-2 text-dark" href="/catalog">Каталог</a>
+        <a class="p-2 text-dark" href="/order">Корзина</a>
+    </nav>
+    <a class="btn btn-outline-primary" href="#">Sign up</a>
+</div>
+<!---баннер-->
+
+<div class="container">
+    <h1>Result</h1>
+    <p th:text="'name: ' + ${tissue.name}" />
+    <p th:text="'price: ' + ${tissue.price}" />
+
+    <a href="/catalog">Submit another tissue</a>
+
+    <!---Footer--->
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+            <div class="col-12 col-md">
+
+                <small class="d-block mb-3 text-muted">&copy;2019, Галимов О.Д., #ВСЕТКАНИМИРА</small>
+            </div>
+        </div>
+    </footer>
+    <!--Footer--->
+</div>
+
 </body>
 </html>

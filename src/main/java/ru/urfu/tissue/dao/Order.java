@@ -20,6 +20,9 @@ public class Order {
     //items section
     private HashSet <OrderItem> itemsList;
 
+    public Order(Integer id) {
+        this.id=id;
+    }
 
     public Order() {
         this.status=0;
@@ -107,11 +110,28 @@ public class Order {
         this.itemsList = itemsList;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", status=" + status +
+                ", creationDate=" + creationDate +
+                ", sendDate=" + sendDate +
+                ", receivedDate=" + receivedDate +
+                ", clientName='" + clientName + '\'' +
+                ", clientLastName='" + clientLastName + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", address='" + address + '\'' +
+                ", itemsList=" + itemsList +
+                '}';
+    }
+
     public void addOrderItem (OrderItem newItem) {
+        this.itemsList.remove(newItem);
         this.itemsList.add(newItem);
+
     }
     public void removeOrderItem (OrderItem newItem) {
-        Integer key = newItem.getTissueId();
         this.itemsList.remove(newItem);
     }
 

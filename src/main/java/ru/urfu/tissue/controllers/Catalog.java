@@ -13,17 +13,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Controller
-public class Tissues {
+public class Catalog {
     @Autowired
     ConnectionCreator connectionCreator;
     private String SELECT_ALL = "SELECT * FROM public.Tissues";
 
-    @RequestMapping("/tissues")
+    @RequestMapping("/catalog")
     public String list_all(Model model)  {
 
-        Connection connection = connectionCreator.createConnection();
+        try (Connection connection = connectionCreator.createConnection()) {
 
-        try {
             ResultSet resultSet = connection.prepareStatement(SELECT_ALL).executeQuery();
             ArrayList <Tissue> result = new ArrayList<>();
             while (resultSet.next()) {
@@ -34,11 +33,12 @@ public class Tissues {
                 result.add(temp);
             }
             model.addAttribute("tissues_list", result);
-            model.addAttribute("tissue", new Tissue());
-            return "Tissues";
+            return "catalog";
         } catch (SQLException e) {
+            System.out.println("Ошибка получения каталога");
+            model.addAttribute("Error_message", e.getMessage());
             e.printStackTrace();
-            return String.valueOf(e.getErrorCode());
+            return "error";
         }
     }
 }
