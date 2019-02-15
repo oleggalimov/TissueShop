@@ -15,7 +15,7 @@ import ru.urfu.tissue.utils.ConnectionCreator;
 @EnableWebMvc
 @EnableAspectJAutoProxy
 @ComponentScan (basePackages = "ru.urfu.tissue")
-public class Config implements WebMvcConfigurer {
+public class Config implements WebMvcConfigurer  {
 
     @Bean
     public ConnectionCreator ConnectionCreator () {

@@ -1,13 +1,31 @@
 
-<!DOCTYPE HTML>
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Ткани на заказ</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"  crossorigin="anonymous" />
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pricing.css}"   />
 </head>
 <body>
-
-<!---баннер--->
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
     <h5 class="my-0 mr-md-auto font-weight-normal" >
         <a href="/">#ВСЕТКАНИМИРА</a>
@@ -19,14 +37,15 @@
     </nav>
     <a class="btn btn-outline-primary" href="/login">Войти</a>
 </div>
-<!---баннер-->
+
+
 
 <div class="container">
-    <h1>Result</h1>
-    <p th:text="'name: ' + ${tissue.name}" />
-    <p th:text="'price: ' + ${tissue.price}" />
 
-    <a href="/catalog">Submit another tissue</a>
+    <img th:src="@{/img/stop.jpg}" align="center"/>
+    <h1>
+        This page is forbidden. You are not authorised, or have no privileges for this content!
+    </h1>
 
     <!---Footer--->
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
@@ -39,6 +58,5 @@
     </footer>
     <!--Footer--->
 </div>
-
 </body>
 </html>
