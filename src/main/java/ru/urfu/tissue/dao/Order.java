@@ -1,6 +1,5 @@
 package ru.urfu.tissue.dao;
 
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class Order {
@@ -126,13 +125,13 @@ public class Order {
                 '}';
     }
 
-    public void addOrderItem (OrderItem newItem) {
+    public boolean addOrderItem (OrderItem newItem) {
         this.itemsList.remove(newItem);
-        this.itemsList.add(newItem);
+        return this.itemsList.add(newItem);
 
     }
-    public void removeOrderItem (OrderItem newItem) {
-        this.itemsList.remove(newItem);
+    public boolean removeOrderItem (OrderItem newItem) {
+        return this.itemsList.remove(newItem);
     }
 
 }

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Component
 @Aspect
 public class Checkorder {
-    @Pointcut ("execution(* ru.urfu.tissue.controllers.*.*(..))")
+    @Pointcut ("execution(* ru.urfu.tissue.controllers.*.*.*(..))")
 
     private void checkIfOrderExists() {
     }

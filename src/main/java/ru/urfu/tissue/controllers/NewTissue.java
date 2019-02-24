@@ -20,15 +20,14 @@ import java.util.ArrayList;
 @Controller
 public class NewTissue {
     @Autowired
-    ConnectionCreator connectionCreator;
+    Connection connection;
     private String INSERT_VALUE = "INSERT INTO public.tissues (name, price, quantity) values (?,?,?)";
     @RequestMapping("/catalog/new")
     public String add_tissue (@ModelAttribute Tissue tissue, Model model)  {
 
 
 
-        try (Connection connection = connectionCreator.createConnection()) {
-
+        try {
             PreparedStatement statement = connection.prepareStatement(INSERT_VALUE);
             statement.setString(1,tissue.getName());
             statement.setFloat(2,tissue.getPrice());

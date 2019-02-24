@@ -1,15 +1,15 @@
-package ru.urfu.tissue.controllers;
-
+package ru.urfu.tissue.controllers.Common;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping ("/about")
-public class About {
+@RequestMapping ("/login")
+public class Login {
     @GetMapping
-    public String about() {
-        return "about";
+    public String login() {
+        return "login";
     }
+
 }

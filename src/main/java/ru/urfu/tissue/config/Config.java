@@ -1,15 +1,15 @@
 package ru.urfu.tissue.config;
 
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ru.urfu.tissue.aop.Checkorder;
 import ru.urfu.tissue.utils.ConnectionCreator;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @Configuration
 @EnableWebMvc
@@ -18,8 +18,9 @@ import ru.urfu.tissue.utils.ConnectionCreator;
 public class Config implements WebMvcConfigurer  {
 
     @Bean
-    public ConnectionCreator ConnectionCreator () {
-        return new ConnectionCreator();
+
+    public Connection ConnectionCreator () throws SQLException {
+        return new ConnectionCreator().createConnection();
     }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

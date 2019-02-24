@@ -24,6 +24,7 @@
 
 
 
+
     </style>
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/pricing.css}"/>
@@ -43,60 +44,60 @@
     <a class="btn btn-outline-primary" href="/login">Войти</a>
 </div>
 <!---баннер-->
-    <div class="container">
-        <h1>Ваш заказ отправлен!</h1>
-        <div>
-            <label><b>Идентификатор: </b></label>
-            <span th:text="${Order.id} ?: ''">...</span>
-        </div>
-        <div>
-            <label><b>Статус: </b></label>
-            <span th:text="${Order.status} ?: ''">...</span>
-        </div>
-        <div>
-            <label><b>Клиент: </b></label>
-            <span th:text="${Order.clientName} ?: ''">...</span> <span
-                th:text="${Order.clientLastName} ?: ''">...</span> <br/>
-            <label><b>Телефон: </b></label>
-            <span th:text="${Order.phoneNumber} ?: ''">...</span><br/>
-            <label><b>Адрес: </b></label>
-            <span th:text="${Order.address} ?: ''">...</span>
-        </div>
-        <div>
-            <label><b>Дата создания: </b></label>
-            <span th:text="${Order.creationDate} ? ${#dates.format(new java.util.Date(Order.creationDate))} : ''">...</span>
-        </div>
-        <div>
-            <label><b>Дата отправки: </b></label>
-            <span th:text="${Order.sendDate} ? ${#dates.format(new java.util.Date(Order.sendDate))} : ''">...</span>
-        </div>
-        <div>
-            <label><b>Дата получения: </b></label>
-            <span th:text="${Order.receivedDate} ? ${#dates.format(new java.util.Date(Order.receivedDate))} : ''">...</span>
-        </div>
-        <p>
-            Данные заказа:
-        </p>
-
-        <table id="order_items" class="table">
-            <tr>
-                <th>Артикул</th>
-                <th>Наименование</th>
-                <th>Количество</th>
-                <th>Цена</th>
-                <th>Стоимость</th>
-            </tr>
-            <th:block th:each="Order_item : ${Order.itemsList}">
-                <tr>
-                    <td th:text="${Order_item.tissueId}">Артикул</td>
-                    <td th:text="${Order_item.name}">Наименование</td>
-                    <td th:text="${Order_item.quantity}">Количество</td>
-                    <td th:text="${Order_item.price}">Цена</td>
-                    <td th:text="${Order_item.totalPrice}">Стоимость</td>
-                </tr>
-            </th:block>
-        </table>
+<div class="container">
+    <h1>Ваш заказ отправлен!</h1>
+    <div>
+        <label><b>Идентификатор: </b></label>
+        <span th:text="${Order.id} ?: ''">...</span>
     </div>
+    <div>
+        <label><b>Статус: </b></label>
+        <span th:text="${Order.status} ?: ''">...</span>
+    </div>
+    <div>
+        <label><b>Клиент: </b></label>
+        <span th:text="${Order.clientName} ?: ''">...</span>
+        <span th:text="${Order.clientLastName} ?: ''">...</span> <br/>
+        <label><b>Телефон: </b></label>
+        <span th:text="${Order.phoneNumber} ?: ''">...</span><br/>
+        <label><b>Адрес: </b></label>
+        <span th:text="${Order.address} ?: ''">...</span>
+    </div>
+    <div>
+        <label><b>Дата создания: </b></label>
+        <span th:text="${Order.creationDate} ? ${#dates.format(new java.util.Date(Order.creationDate))} : ''">...</span>
+    </div>
+    <div>
+        <label><b>Дата отправки: </b></label>
+        <span th:text="${Order.sendDate} ? ${#dates.format(new java.util.Date(Order.sendDate))} : ''">...</span>
+    </div>
+    <div>
+        <label><b>Дата получения: </b></label>
+        <span th:text="${Order.receivedDate} ? ${#dates.format(new java.util.Date(Order.receivedDate))} : ''">...</span>
+    </div>
+    <p>
+        Данные заказа:
+    </p>
+
+    <table id="order_items" class="table">
+        <tr>
+            <th>Артикул</th>
+            <th>Наименование</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th>Стоимость</th>
+        </tr>
+        <th:block th:each="Order_item : ${Order.itemsList}">
+            <tr>
+                <td th:text="${Order_item.tissueId}">Артикул</td>
+                <td th:text="${Order_item.name}">Наименование</td>
+                <td th:text="${Order_item.quantity}">Количество</td>
+                <td th:text="${Order_item.price}">Цена</td>
+                <td th:text="${Order_item.totalPrice}">Стоимость</td>
+            </tr>
+        </th:block>
+    </table>
+</div>
 
 
 <br/>

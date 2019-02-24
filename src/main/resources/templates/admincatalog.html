@@ -29,18 +29,19 @@
 
 <!---баннер--->
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal">
+    <h5 class="my-0 mr-md-auto font-weight-normal" >
         <a href="/">#ВСЕТКАНИМИРА</a>
     </h5>
     <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="/about">О нас</a>
         <a class="p-2 text-dark" href="/catalog">Каталог</a>
-        <a class="p-2 text-dark" href="/order">Корзина</a>
+        <a class="p-2 text-dark" href="/admin">Панель управления</a>
+        <a class="p-2 text-dark" href="/admin/orderslist">Заказы</a>
+        <a class="p-2 text-dark" href="/admin/order/additem">Назад к заказу</a>
     </nav>
-    <a class="btn btn-outline-primary" href="/login">Войти</a>
+    <a class="btn btn-outline-primary" href="/logout">Выйти</a>
 </div>
 <!---баннер-->
-
 
 
 <div class="container">
@@ -64,7 +65,7 @@
                     <td th:text="${tissue_element.price}">Цена</td>
                     <td><input th:id="'quantity_' + ${tissue_element.id}" type="number" step="0.01" min="0.0"/></td>
                     <td>
-                        <button th:onclick="'javascript:addItemToChart(' + ${tissue_element.id}+','+ ${tissue_element.price}+');'">Добавить</button>
+                        <button th:onclick="'javascript:addItemToOrder(' + ${tissue_element.id}+','+ ${tissue_element.price}+');'">Добавить</button>
                     </td>
                 </tr>
             </th:block>
@@ -74,28 +75,28 @@
 
     <!--<br>-->
     <!--<form action="#" th:action="@{/catalog/new}" th:object="${tissue}" method="post">-->
-        <!--<table>-->
-            <!--<tr>-->
-                <!--<td>Наименование</td>-->
-                <!--<td>Цена</td>-->
-                <!--<td>Количество</td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td><input type="text" th:field="*{name}"/></td>-->
-                <!--<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>-->
-                <!--<td><input type="text" th:field="*{price}"/></td>-->
-                <!--<td th:if="${#fields.hasErrors('price')}" th:errors="*{name}">Price Error</td>-->
+    <!--<table>-->
+    <!--<tr>-->
+    <!--<td>Наименование</td>-->
+    <!--<td>Цена</td>-->
+    <!--<td>Количество</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td><input type="text" th:field="*{name}"/></td>-->
+    <!--<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>-->
+    <!--<td><input type="text" th:field="*{price}"/></td>-->
+    <!--<td th:if="${#fields.hasErrors('price')}" th:errors="*{name}">Price Error</td>-->
 
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td><input type="submit" value="Submit"/></td>-->
-                <!--<td><input type="reset" value="Reset"/></td>-->
-            <!--</tr>-->
-        <!--</table>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td><input type="submit" value="Submit"/></td>-->
+    <!--<td><input type="reset" value="Reset"/></td>-->
+    <!--</tr>-->
+    <!--</table>-->
     <!--</form>-->
 
 
-    <script type="application/javascript" th:src="@{/js/main.js}" crossorigin="anonymous"></script>
+    <script type="application/javascript" th:src="@{/js/adminMain.js}" crossorigin="anonymous"></script>
     <!---Footer--->
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">

@@ -1,4 +1,4 @@
-package ru.urfu.tissue.controllers;
+package ru.urfu.tissue.controllers.Common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class SavedOrderController {
 
     @Autowired
     private
-    ConnectionCreator connectionCreator;
+    Connection conn;
 
     @GetMapping
     public String checkSavedOrder(Model model) {
@@ -42,7 +42,7 @@ public class SavedOrderController {
             model.addAttribute("Error_message", "Отправленные данные некорректны!");
             return "error";
         } else {
-            try (Connection conn =  connectionCreator.createConnection()) {
+            try  {
                 String selectOrders = "SELECT id,status,creation_date,sending_date,receving_date,first_name,last_name, phone_number, address FROM public.orders o WHERE o.id=? AND o.phone_number=?";
                 PreparedStatement statement = conn.prepareStatement(selectOrders);
                 statement.setInt(1,  orderId );

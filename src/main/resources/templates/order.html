@@ -68,10 +68,16 @@
         <th:block th:each="Order_item : ${Order.itemsList}">
             <tr>
                 <td th:text="${Order_item.tissueId}">Артикул</td>
-                <td th:text="${Order_item.name}">Наименование</td>
-                <td th:text="${Order_item.quantity}">Количество</td>
-                <td th:text="${Order_item.price}">Цена</td>
-                <td th:text="${Order_item.totalPrice}">Стоимость</td>
+                <td th:id="'name_' + ${Order_item.tissueId}" th:text="${Order_item.name}">Наименование</td>
+                <td><input th:id="'quantity_' + ${Order_item.tissueId}" type="number" step="0.01" th:value="${Order_item.quantity}"/></td>
+                <td th:id="'price_' + ${Order_item.tissueId}" th:text="${Order_item.price}">Цена</td>
+                <td th:id="'totalPrice_' + ${Order_item.tissueId}" th:text="${Order_item.totalPrice}">Стоимость</td>
+                <td>
+                    <button th:onclick="'javascript:changeItemInChart(' + ${Order_item.tissueId}+');'">Изменить</button>
+                </td>
+                <td>
+                    <button th:onclick="'javascript:delItemFromChart(' + ${Order_item.tissueId}+');'">Удалить</button>
+                </td>
             </tr>
         </th:block>
     </table>
@@ -113,6 +119,7 @@
             </tr>
         </table>
     </form>
+
     <!---Footer--->
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
@@ -123,6 +130,6 @@
         </div>
     </footer>
 </div>
-
+<script type="application/javascript" th:src="@{/js/main.js}" crossorigin="anonymous"></script>
 </body>
 </html>

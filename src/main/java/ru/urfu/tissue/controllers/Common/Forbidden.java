@@ -1,14 +1,15 @@
-package ru.urfu.tissue.controllers;
+package ru.urfu.tissue.controllers.Common;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping ("/forbidden")
+public class Forbidden {
     @GetMapping
-    public String secureCatalog () {
-        return "admin";
+    public String login() {
+        return "forbidden";
     }
+
 }

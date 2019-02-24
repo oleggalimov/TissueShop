@@ -41,50 +41,32 @@
     <a class="btn btn-outline-primary" href="/logout">Выйти</a>
 </div>
 <!---баннер-->
+
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4"><a th:href="@{/admin/}">Управление магазином</a></h1>
-    <p class="lead">Выберите нужный функционал:</p>
+    <p class="lead">Поиск</p>
 </div>
 
 <div class="container">
-    <div class="card-deck mb-3 text-center">
-        <div class="card mb-4 shadow-sm">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Заказы</h4>
-            </div>
-            <div class="card-body">
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li><a th:href="@{/admin/orderslist}">Все заказы</a></li>
-                    <li><a th:href="@{/admin/search}">Поиск по заказам</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="card mb-4 shadow-sm">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Каталог</h4>
-            </div>
-            <div class="card-body">
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li> Просмотреть каталог</li>
-                    <li>Изменить каталог</li>
-                </ul>
-            </div>
-        </div>
-        <div class="card mb-4 shadow-sm">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Отчет</h4>
-            </div>
-            <!--<div class="card-body">-->
-                <!--<h1 class="card-title pricing-card-title">Получи!</h1>-->
-                <!--<ul class="list-unstyled mt-3 mb-4">-->
-                    <!--<li>Получи товар у нашего курьера</li>-->
-                    <!--<li>Оплати заказ при получении</li>-->
-                    <!--<li>Наслаждайся</li>-->
-                <!--</ul>-->
-                <!--<button th:onclick="'window.location.href = \'' + @{/contact} + '\''" type="button" class="btn btn-lg btn-block btn-primary">Связаться с нами</button>-->
-            <!--</div>-->
-        </div>
-    </div>
+
+        <h1>Найти</h1>
+        <form class="form" action="#" th:action="@{/admin/search}" method="post">
+            <table class="table">
+                <tr>
+                    <td>Идентификатор</td>
+                    <td>
+                        <input type="number"  size="50" name="orderId" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Поиск"/><br/><br/><input type="reset" value="Reset" /></td>
+                </tr>
+            </table>
+        </form>
+
+    <br/>
+    <p th:text="${ErrorMessage}">...</p>
 
     <!---Footer--->
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
@@ -97,5 +79,6 @@
     </footer>
     <!--Footer--->
 </div>
+
 </body>
 </html>

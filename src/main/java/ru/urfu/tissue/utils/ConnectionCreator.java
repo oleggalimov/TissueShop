@@ -11,7 +11,6 @@ public class ConnectionCreator {
     private final String USER = "msmdmyzv";
     private final String PASSWORD = "00axuz7edYBRdCy7nlSOsO2eypKWcAq8";
     private final String URL = "jdbc:postgresql://baasu.db.elephantsql.com:5432/msmdmyzv";
-
     private Connection connection;
 
 

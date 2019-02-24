@@ -1,4 +1,4 @@
-package ru.urfu.tissue.controllers;
+package ru.urfu.tissue.controllers.Common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,13 +15,12 @@ import java.sql.*;
 import java.util.HashSet;
 
 @Controller
-@RequestMapping(value = "/order")
-//к классу применяется аспект checkOrder, который гарантированно создаст заказ
 
+//к классу применяется аспект checkOrder, который гарантированно создаст заказ
+@RequestMapping ("/order")
 public class OrderController {
     @Autowired
-    private
-    ConnectionCreator connectionCreator;
+    private Connection connection;
 
     @GetMapping
     public String orderInfo(HttpServletRequest req, Model model) {
@@ -38,10 +37,38 @@ public class OrderController {
         HttpSession session = req.getSession(false);
         Order order = (Order) session.getAttribute("Order");
         item.setTotalPrice(item.getPrice()*item.getQuantity());
-        order.addOrderItem(item);
+        boolean add = order.addOrderItem(item);
         session.setAttribute("Order", order);
-        return "Added";
+        return add ? "added":"notAdded";
+
     }
+
+    @PutMapping
+    public @ResponseBody
+    String updateItem (HttpServletRequest req, @RequestBody OrderItem item) {
+
+        HttpSession session = req.getSession(false);
+        Order order = (Order) session.getAttribute("Order");
+        item.setTotalPrice(item.getPrice()*item.getQuantity());
+        boolean add = order.addOrderItem(item);
+        session.setAttribute("Order", order);
+        return add ? "updated":"notUpdated";
+
+    }
+
+    @DeleteMapping
+    public @ResponseBody
+    String delItem(HttpServletRequest req, @RequestBody OrderItem item, Model model) {
+
+        HttpSession session = req.getSession(false);
+        Order order = (Order) session.getAttribute("Order");
+        boolean del = order.removeOrderItem(item);
+        session.setAttribute("Order", order);
+        return del ? "deleted":"deleted";
+
+    }
+
+
 
     @PostMapping(value = "/send", consumes = "application/x-www-form-urlencoded;charset=UTF-8")
     public String sendOrder(
@@ -68,9 +95,7 @@ public class OrderController {
             order.setPhoneNumber(phoneNumber);
             order.setAddress(address.trim());
 
-            try (Connection connection = connectionCreator.createConnection()) {
-                connection.setAutoCommit(false);
-
+            try  {
                 String INSERT_ORDER = "INSERT INTO public.orders (first_name, last_name, phone_number,address,status,creation_date) values (?,?,?,?,1,?)";
 
                 PreparedStatement saveorder = connection.prepareStatement(INSERT_ORDER, Statement.RETURN_GENERATED_KEYS);
@@ -110,7 +135,6 @@ public class OrderController {
                     }
                     order.setId(orderId);
                     order.setStatus(1);
-                    connection.commit();
                 }
             } catch (SQLException | NullPointerException e) {
                 System.out.println("Ошибка сохранения заказа");

@@ -1,4 +1,4 @@
-package ru.urfu.tissue.controllers;
+package ru.urfu.tissue.controllers.Common;
 
 
 

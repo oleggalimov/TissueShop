@@ -1,11 +1,11 @@
-package ru.urfu.tissue.controllers;
+package ru.urfu.tissue.controllers.Admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.urfu.tissue.dao.Tissue;
-import ru.urfu.tissue.utils.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,18 +13,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Controller
-public class Catalog {
+@RequestMapping("/admin")
+public class AdminController {
     @Autowired
-    ConnectionCreator connectionCreator;
-    private String SELECT_ALL = "SELECT * FROM public.Tissues";
+    private Connection connection;
 
-    @RequestMapping("/catalog")
-    public String list_all(Model model)  {
+    @GetMapping
+    public String controlPanel () {
+        return "admin";
+    }
 
-        try (Connection connection = connectionCreator.createConnection()) {
+    @GetMapping ("/catalog")
+    public String secureCatalog (Model model) {
+        try {
 
+            String SELECT_ALL = "SELECT * FROM public.Tissues";
             ResultSet resultSet = connection.prepareStatement(SELECT_ALL).executeQuery();
-            ArrayList <Tissue> result = new ArrayList<>();
+            ArrayList<Tissue> result = new ArrayList<>();
             while (resultSet.next()) {
                 Tissue temp = new Tissue();
                 temp.setId(resultSet.getInt(1));
@@ -33,12 +38,13 @@ public class Catalog {
                 result.add(temp);
             }
             model.addAttribute("tissues_list", result);
-            return "catalog";
+            return "admincatalog";
         } catch (SQLException e) {
             System.out.println("Ошибка получения каталога");
             model.addAttribute("Error_message", e.getMessage());
             e.printStackTrace();
             return "error";
         }
+
     }
 }

@@ -28,4 +28,6 @@ dependencies {
 	compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.2'
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+//	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+	testCompile("org.springframework.boot:spring-boot-starter-test")
 }
