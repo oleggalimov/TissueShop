@@ -7,9 +7,8 @@ buildscript {
 		jcenter()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath group:"org.springframework.boot", name:"spring-boot-gradle-plugin", version: springBootVersion
 	}
-	
 }
 plugins {
 	id "io.qameta.allure" version "2.7.0"
@@ -28,12 +27,28 @@ group = 'ru.urfu'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+
+
+
 repositories {
 	mavenCentral()
+}
+
+task updateDb (type:Exec){
+        workingDir "$projectDir/src/main/resources/db/liquibase"
+        if (System.properties['os.name'].toLowerCase().contains('windows')) {
+            println "Start update on windows"
+            commandLine 'cmd', '/c', 'createDb.bat'
+            
+        } else {
+            println "it's not Windows"
+            //TODO
+        }
 }
 test {
     useJUnitPlatform()
 }
+
 dependencies {
 	compile (group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion) 
 	compile group:'org.postgresql', name:'postgresql', version:'42.2.5'
@@ -42,6 +57,9 @@ dependencies {
     compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.2'
     testCompile group: 'io.qameta.allure', name: 'allure-junit5', version: '2.10.0'
     testRuntime "org.junit.jupiter:junit-jupiter-engine:5.2.0"
+    // https://mvnrepository.com/artifact/org.liquibase/liquibase-core
+    compile group: 'org.liquibase', name: 'liquibase-core', version: '3.6.3'
+
 
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.2.0')
     testCompile("org.springframework.boot:spring-boot-starter-test") 
